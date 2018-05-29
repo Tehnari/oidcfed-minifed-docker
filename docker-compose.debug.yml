@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   oidcfed-minifed-docker:
-    image: oidcfed-minifed-docker
+    image: tehnari/oidcfed-minifed-docker
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,4 +10,4 @@ services:
         - 3000:3000
         - 8080:8080
         - 8100:8100
-                
+

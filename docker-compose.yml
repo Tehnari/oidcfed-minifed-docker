@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   oidcfed-minifed-docker:
-    image: oidcfed-minifed-docker
+    image: tehnari/oidcfed-minifed-docker
     deploy:
       restart_policy:
         condition: on-failure          
