@@ -18,12 +18,12 @@ WORKDIR /app
 ADD . /app
 
 #Adding some packages
-RUN apk update
-RUN apk add vim
-RUN apk add nano
-RUN apk add git
-RUN apk add curl
-RUN apk add wget
+RUN apk update && \
+    apk add vim && \
+    apk add nano && \
+    apk add git && \
+    apk add curl && \
+    apk add wget
 
 
 # Using pip:
