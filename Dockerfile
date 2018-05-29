@@ -12,7 +12,7 @@ LABEL Author="Constantin Sclifos sclifcon@ase.md"
 #FROM continuumio/miniconda3
 
 LABEL Name=tehnari/oidcfed-minifed-docker Version=0.0.1
-EXPOSE 3000 8080 8100
+EXPOSE 8080 8100
 
 WORKDIR /app
 ADD . /app
