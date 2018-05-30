@@ -33,16 +33,19 @@ RUN yum install -y vim && \
     whereis pip3.6
 
 # Using pip:
+RUN PATH=$HOME/.local/bin:$HOME/.local/lib:$HOME/.local/lib/python3.6:$HOME/.local/lib/python3.6/site-packages:$PATH
 RUN python3.6 -m pip install --upgrade pip
-RUN python3.6 -m pip install -r requirements.txt
+#RUN python3.6 -m pip install  --user -r requirements.txt
+RUN python3.6 -m pip install --force-reinstall --no-cache-dir -r requirements.txt
 RUN cd /app && \
     git clone https://github.com/rohe/oidc-oob-federation.git && \
     cd /app/oidc-oob-federation/ && \
     python3.6 ./create_fo_bundle.py && \
     cd /app/oidc-oob-federation/RP && \
     python3.6 ./create_sms.py conf && \
-    cd /app/oidc-oob-federation/OP && \
-    python3.6 ./create_sms.py conf
+    cd /app/oidc-oob-federation/OP
+#    cd /app/oidc-oob-federation/OP && \
+#    python3.6 ./create_sms.py conf
 
 #CMD ["python3", "-m", "oidcfed-minifed-docker"]
 
