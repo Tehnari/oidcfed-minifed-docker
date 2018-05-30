@@ -47,6 +47,7 @@ RUN cd /app && \
 #    cd /app/oidc-oob-federation/OP && \
 #    python3.6 ./create_sms.py conf
 
+
 #CMD ["python3", "-m", "oidcfed-minifed-docker"]
 
 # Using pipenv:
