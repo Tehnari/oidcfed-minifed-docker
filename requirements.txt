@@ -3,3 +3,4 @@ oidcrp
 fedoidcendpoint
 fedoidcrp
 jinja2
+pyjwkest 
