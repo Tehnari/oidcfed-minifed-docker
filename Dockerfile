@@ -11,7 +11,7 @@ LABEL Author="Constantin Sclifos sclifcon@ase.md"
 # If you prefer miniconda:
 #FROM continuumio/miniconda3
 
-LABEL Name=tehnari/oidcfed-minifed-docker Version=0.0.5
+LABEL Name=tehnari/oidcfed-minifed-docker Version=0.0.6
 EXPOSE 8080 8100
 
 WORKDIR /app
@@ -33,8 +33,9 @@ RUN cd /app && \
     python3.6 ./create_fo_bundle.py && \
     cd /app/oidc-oob-federation/RP && \
     python3.6 ./create_sms.py conf && \
-    cd /app/oidc-oob-federation/OP && \
-    python3.6 ./create_sms.py conf
+    cd /app/oidc-oob-federation/OP
+#    cd /app/oidc-oob-federation/OP && \
+#    python3.6 ./create_sms.py conf
 
 
 #CMD ["python3", "-m", "oidcfed-minifed-docker"]
