@@ -4,48 +4,37 @@
 # OS Support also exists for jessie & stretch (slim and full).
 # See https://hub.docker.com/r/library/python/ for all supported Python
 # tags from Docker Hub.
-FROM centos/s2i-base-centos7
+FROM opensuse/leap
 #MAINTAINER Constantin Sclifos sclifcon@ase.md
 LABEL Author="Constantin Sclifos sclifcon@ase.md"
 
 # If you prefer miniconda:
 #FROM continuumio/miniconda3
 
-LABEL Name=tehnari/oidcfed-minifed-docker Version=0.0.4
+LABEL Name=tehnari/oidcfed-minifed-docker Version=0.0.5
 EXPOSE 8080 8100
 
 WORKDIR /app
 ADD . /app
 
 #Adding some packages
-# yum update -y && \
-#RUN yum check-update && \
-RUN yum install -y vim && \
-    yum install -y nano && \
-    yum install -y git && \
-    yum install -y curl && \
-    yum install -y wget && \
-    yum -y install yum-utils && \
-    yum -y groupinstall development && \
-    yum -y install https://centos7.iuscommunity.org/ius-release.rpm && \
-    yum -y install python36u && \
-    yum -y install python36u-pip && \
-    whereis pip3.6
+RUN zypper -v ref && zypper -n in -l vim  nano git curl wget python3 python3-pip && \
+    whereis pip3
 
 # Using pip:
-RUN PATH=$HOME/.local/bin:$HOME/.local/lib:$HOME/.local/lib/python3.6:$HOME/.local/lib/python3.6/site-packages:$PATH
+#RUN PATH=$HOME/.local/bin:$HOME/.local/lib:$HOME/.local/lib/python3.6:$HOME/.local/lib/python3.6/site-packages:$PATH
 RUN python3.6 -m pip install --upgrade pip
 #RUN python3.6 -m pip install  --user -r requirements.txt
-RUN python3.6 -m pip install --force-reinstall --no-cache-dir -r requirements.txt
+RUN python3.6 -m pip install  -r requirements.txt
+#RUN python3.6 -m pip install --force-reinstall --no-cache-dir -r requirements.txt
 RUN cd /app && \
     git clone https://github.com/rohe/oidc-oob-federation.git && \
     cd /app/oidc-oob-federation/ && \
     python3.6 ./create_fo_bundle.py && \
     cd /app/oidc-oob-federation/RP && \
     python3.6 ./create_sms.py conf && \
-    cd /app/oidc-oob-federation/OP
-#    cd /app/oidc-oob-federation/OP && \
-#    python3.6 ./create_sms.py conf
+    cd /app/oidc-oob-federation/OP && \
+    python3.6 ./create_sms.py conf
 
 
 #CMD ["python3", "-m", "oidcfed-minifed-docker"]
