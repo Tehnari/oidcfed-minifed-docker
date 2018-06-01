@@ -1,9 +1,8 @@
 
 # Python support can be specified down to the minor or micro version
 # (e.g. 3.6 or 3.6.3).
-# OS Support also exists for jessie & stretch (slim and full).
-# See https://hub.docker.com/r/library/python/ for all supported Python
-# tags from Docker Hub.
+# Ex. to run this project:
+# docker run -t -d -p 8080:8080 -p 8100:8100 tehnari/oidcfed-minifed-docker:0.0.5 /bin/bash
 FROM opensuse/leap
 #MAINTAINER Constantin Sclifos sclifcon@ase.md
 LABEL Author="Constantin Sclifos sclifcon@ase.md"
