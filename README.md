@@ -1,3 +1,6 @@
+Please note that this activity has been discontinued, this repository is currently unmaintained and it is still available only for historical reference
+----
+
 # oidcfed-minifed-docker
 
 This repo contains Docker files for OIDCFED mini federation test.
